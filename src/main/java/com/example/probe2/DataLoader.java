@@ -20,6 +20,7 @@ public class DataLoader implements CommandLineRunner {
             TasksItem task1 = new TasksItem();
             TasksItem task2 = new TasksItem();
 
+
             task1.setDescription("this is the first task");
             task1.setCreatedDate(Instant.now());
 
