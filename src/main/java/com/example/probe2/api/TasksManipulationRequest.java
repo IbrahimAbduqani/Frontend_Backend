@@ -1,16 +1,22 @@
-package com.example.probe2;
+package com.example.probe2.api;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.Size;
 import java.time.Instant;
 
-@Entity
-public class TasksItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+public class TasksManipulationRequest {
     private Long id;
 
+    public TasksManipulationRequest(Long id, String description, boolean complete, Instant createdDate, Instant modifiedDate, String category) {
+        this.id = id;
+        this.description = description;
+        this.complete = complete;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+        this.category = category;
+    }
+
+    public TasksManipulationRequest() {
+    }
 
     private String description;
 
@@ -23,30 +29,13 @@ public class TasksItem {
 
     private Instant modifiedDate;
 
-    private String category;
-
-    public TasksItem() {}
-
-    public TasksItem(String description, String category) {
-        this.description = description;
-        this.complete = false;
-        this.createdDate = Instant.now();
-        this.modifiedDate = Instant.now();
-        this.category = category;
-    }
-
-
-    @Override
-    public String toString() {
-        return String.format("TodoItem{id=%d, description='%s', complete='%s', createdDate='%s', modifiedDate='%s', category ='%s'}",
-                id, description, complete, createdDate, modifiedDate, category);
-    }
-
     public Long getId() {
         return id;
     }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;
@@ -87,5 +76,6 @@ public class TasksItem {
     public void setCategory(String category) {
         this.category = category;
     }
-    //jdbc:postgresql://ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d7ms2re36crkn9
+
+    private String category;
 }
